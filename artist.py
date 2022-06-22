@@ -1,13 +1,12 @@
 from typing import List
 from dataclasses import dataclass
 
-from song import Song
- 
+
 @dataclass
 class Artist:
- 
+    """A musical artist."""
+
     artist_name: str
-    artist_id: str
-    full_tracklist: List[Song]
-
-
+    """The name of the artist."""
+    song_names: List[str]
+    """A full list of the artist's current song titles."""
