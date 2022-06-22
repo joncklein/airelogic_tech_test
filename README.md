@@ -11,6 +11,7 @@ Set up a new Python 3.8+ environment in the environment management tool of your 
 
 Install the requirements with pip
 `pip install -r requirements.txt`
+
 Run the code by running `main.py`
 
 
