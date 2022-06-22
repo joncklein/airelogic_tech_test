@@ -31,11 +31,23 @@ class MusicBrainzArtistAPI:
     @staticmethod
     def _look_up_song_names(artist_id: str) -> Set[str]:
         """Look up names of songs by an artist."""
+        limit = 100
+        offset = 0
+        release_list = []
+        page = 1
         songs = set()
 
-        release_list = mbz.browse_releases(artist=artist_id, release_type=["album"])[
+        page_releases = mbz.browse_releases(artist=artist_id, release_type=["album"], limit=limit)[
             "release-list"
         ]
+        release_list += page_releases
+        while len(page_releases) >= limit:
+            offset += limit
+            page += 1
+            result = mbz.browse_releases(artist=artist_id,release_type=["album"], limit=limit, offset=offset)
+            page_releases = result['release-list']
+            release_list += page_releases
+
         for release in release_list:
             release_id = release["id"]
             release_track_list = mbz.get_release_by_id(
