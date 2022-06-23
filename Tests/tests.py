@@ -76,7 +76,7 @@ def test_look_up_artist_id():
 
 @patch("api.mbz", MockArtistAPIBadResponse())
 def test_look_up_artist_id_artist_not_found():
-    """ test that the correct exception is raised when artist not found"""
+    """Test that the correct exception is raised when artist not found"""
     artist_api = MusicBrainzArtistAPI(app_name='test', version='0.1', author='test_author')
     with pytest.raises(NoSuchArtist):
         artist_api._look_up_artist_id("test artist")
@@ -84,7 +84,7 @@ def test_look_up_artist_id_artist_not_found():
 
 @patch("api.mbz", MockArtistAPIResponse())
 def test_look_up_song_names():
-    """ test that song titles can be retrieved"""
+    """Test that song titles can be retrieved"""
     artist_api = MusicBrainzArtistAPI(app_name='test', version='0.1', author='test_author')
     artist_id = '12345'
     song = {'song title'}
